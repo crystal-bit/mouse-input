@@ -1,8 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://assets/white-circle.png" type="Texture" id=1]
-[ext_resource path="res://Character.gd" type="Script" id=2]
-[ext_resource path="res://assets/tip.png" type="Texture" id=3]
+[ext_resource path="res://GUIControls.gd" type="Script" id=1]
+[ext_resource path="res://assets/font/Chakra_Petch/ChakraPetch-Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/white-circle.png" type="Texture" id=3]
+[ext_resource path="res://Character.gd" type="Script" id=4]
+[ext_resource path="res://assets/tip.png" type="Texture" id=5]
+[ext_resource path="res://AngleIndicator.gd" type="Script" id=6]
+[ext_resource path="res://mouse/Mouse.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.167742, 0.567742 )
@@ -11,53 +15,235 @@ colors = PoolColorArray( 0.271027, 0.397305, 0.417969, 1, 0.153992, 0.201049, 0.
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 21.1923, 24.4476 )
+[sub_resource type="DynamicFont" id=7]
+font_data = ExtResource( 2 )
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 140.0
+
+[sub_resource type="Animation" id=4]
+resource_name = "squash"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, 1.41421, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.6, 0.6 ), Vector2( 0.55, 0.55 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0.752941, 0.407843, 1 ), Color( 0.905882, 0.411765, 0.113725, 1 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "squash-loop"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1.41421, 1.41421 ),
+"update": 0,
+"values": [ Vector2( 0.55, 0.55 ), Vector2( 0.57, 0.57 ), Vector2( 0.55, 0.55 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.905882, 0.411765, 0.113725, 1 ), Color( 0.803922, 0.819608, 0.298039, 1 ), Color( 0.905882, 0.411765, 0.113725, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "squash-out"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, 1.41421, 1 ),
+"update": 0,
+"values": [ Vector2( 0.55, 0.55 ), Vector2( 0.6, 0.6 ), Vector2( 0.5, 0.5 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.905882, 0.411765, 0.113725, 1 ), Color( 1, 0.752941, 0.407843, 1 ) ]
+}
 
 [node name="InputMappingTutorial" type="Node2D"]
 
-[node name="GUIControls" type="CanvasLayer" parent="."]
+[node name="BG" type="CanvasLayer" parent="."]
 editor/display_folded = true
+layer = -1
 
-[node name="Background" type="ColorRect" parent="GUIControls"]
-anchor_top = 1.0
+[node name="Control" type="Control" parent="BG"]
+editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -178.0
-color = Color( 0.332031, 0.330005, 0.319061, 1 )
+mouse_filter = 2
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="BG/Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 1117.0
-margin_top = -5.0
-margin_right = 1646.0
-margin_bottom = 1213.0
+margin_left = 1100.0
+margin_right = 676.0
+margin_bottom = 700.0
 rect_rotation = 90.0
 mouse_filter = 2
 texture = SubResource( 2 )
 expand = true
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Character" type="Sprite" parent="."]
-self_modulate = Color( 1, 0.752941, 0.407843, 1 )
-position = Vector2( 567.783, 226.753 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 1 )
-script = ExtResource( 2 )
+[node name="GUIControls" type="CanvasLayer" parent="."]
+editor/display_folded = true
+script = ExtResource( 1 )
+characterPath = NodePath("../Character")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUIControls"]
+margin_left = 120.0
+margin_top = 110.0
+margin_right = 255.0
+margin_bottom = 150.0
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Handle" type="Sprite" parent="Character"]
-self_modulate = Color( 0.952941, 0.513726, 0.164706, 1 )
-position = Vector2( 0.856201, -115.715 )
-scale = Vector2( 3, 4 )
+[node name="GlobalMousePos" type="Label" parent="GUIControls/HBoxContainer"]
+margin_top = 9.0
+margin_right = 157.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 7 )
+text = "Global Mouse Pos = "
+
+[node name="Value" type="Label" parent="GUIControls/HBoxContainer"]
+margin_left = 161.0
+margin_top = 9.0
+margin_right = 161.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 7 )
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="GUIControls"]
+margin_left = 120.0
+margin_top = 150.0
+margin_right = 255.0
+margin_bottom = 190.0
+
+[node name="RelativeMousePos" type="Label" parent="GUIControls/HBoxContainer2"]
+margin_top = 9.0
+margin_right = 152.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 7 )
+text = "Local Mouse Pos = "
+
+[node name="Value" type="Label" parent="GUIControls/HBoxContainer2"]
+margin_left = 156.0
+margin_top = 9.0
+margin_right = 156.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 7 )
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="GUIControls"]
+margin_left = 120.0
+margin_top = 185.0
+margin_right = 255.0
+margin_bottom = 225.0
+
+[node name="RelativeMousePos" type="Label" parent="GUIControls/HBoxContainer3"]
+margin_top = 9.0
+margin_right = 172.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 7 )
+text = "Angle Circle-Mouse = "
+
+[node name="Value" type="Label" parent="GUIControls/HBoxContainer3"]
+margin_left = 176.0
+margin_top = 9.0
+margin_right = 176.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 7 )
+
+[node name="Character" type="Sprite" parent="."]
+editor/display_folded = true
+self_modulate = Color( 1, 0.752941, 0.407843, 1 )
+position = Vector2( 710, 220 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="white-circle" type="Sprite" parent="Character"]
+scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 3 )
 
-[node name="Area2D" type="Area2D" parent="Character/Handle"]
+[node name="Area2D" type="Area2D" parent="Character"]
+editor/display_folded = true
+rotation = 1.5708
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Character/Handle/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character/Area2D"]
 shape = SubResource( 3 )
 
-[connection signal="mouse_entered" from="Character/Handle/Area2D" to="Character" method="_on_Area2D_mouse_entered"]
-[connection signal="mouse_exited" from="Character/Handle/Area2D" to="Character" method="_on_Area2D_mouse_exited"]
+[node name="Handle" type="Sprite" parent="Character"]
+self_modulate = Color( 0.952941, 0.513726, 0.164706, 1 )
+position = Vector2( 120, 0 )
+rotation = 1.5708
+scale = Vector2( 3, 4 )
+texture = ExtResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Character"]
+anims/squash = SubResource( 4 )
+anims/squash-loop = SubResource( 6 )
+anims/squash-out = SubResource( 5 )
+
+[node name="AngleIndicator" type="Node2D" parent="."]
+script = ExtResource( 6 )
+characterPath = NodePath("../Character")
+draw_angle = true
+
+[node name="MouseIcon" parent="." instance=ExtResource( 7 )]
+position = Vector2( 160, 340 )
+scale = Vector2( 0.4, 0.4 )
+
+[connection signal="angle_changed" from="Character" to="GUIControls" method="_on_Character_angle_changed"]
+[connection signal="mouse_hover_changed" from="Character" to="GUIControls" method="_on_Character_mouse_hover_changed"]
+[connection signal="mouse_entered" from="Character/Area2D" to="Character" method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="Character/Area2D" to="Character" method="_on_Area2D_mouse_exited"]

@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://mouse/Mouse.gd" type="Script" id=1]
+[ext_resource path="res://assets/mouse-icons/iconmonstr-mouse-lmb.png" type="Texture" id=2]
+[ext_resource path="res://assets/mouse-icons/iconmonstr-mouse-rmb.png" type="Texture" id=3]
+[ext_resource path="res://assets/mouse-icons/iconmonstr-mouse.png" type="Texture" id=4]
+
+[node name="MouseIcon" type="Node2D"]
+position = Vector2( 0, -1 )
+script = ExtResource( 1 )
+
+[node name="iconmonstr-mouse-lmb" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 2 )
+
+[node name="iconmonstr-mouse-rmb" type="Sprite" parent="."]
+visible = false
+position = Vector2( 30, -20 )
+texture = ExtResource( 3 )
+region_rect = Rect2( 43.5, 118.5, 193, 45.5 )
+
+[node name="iconmonstr-mouse" type="Sprite" parent="."]
+position = Vector2( 4, 1 )
+texture = ExtResource( 4 )
+
