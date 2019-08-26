@@ -31,16 +31,12 @@ func _input(event):
 		
 	if event is InputEventMouseButton:
 		if event.is_action_pressed("mouse_lmb"):
-			print("Mouse sinistro premuto")
 			mouse_pressed = true
 		elif event.is_action_released("mouse_lmb"):
-			print("Mouse sinistro rilasciato")
 			mouse_pressed = false
 		if event.is_action_pressed("mouse_rmb"):
 			mouse_pressed = true
-			print("Mouse destro premuto")
 		elif event.is_action_released("mouse_rmb"):
-			print("Mouse destro rilasciato")
 			mouse_pressed = false
 	update()
 
