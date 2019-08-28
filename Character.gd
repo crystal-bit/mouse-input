@@ -38,7 +38,7 @@ func _input(event):
 func _draw():
 	if mouse_pressed:
 		print(get_local_mouse_position().ceil().y)
-		draw_line(Vector2(), get_local_mouse_position(), Color.blue)
+		draw_line(Vector2(), get_local_mouse_position(), Color.aliceblue)
 	
 	if draw_axis:
 		draw_line(Vector2(), Vector2(500, 0), Color.red)
