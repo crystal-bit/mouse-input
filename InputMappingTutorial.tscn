@@ -1,12 +1,11 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://GUIControls.gd" type="Script" id=1]
 [ext_resource path="res://assets/font/Chakra_Petch/ChakraPetch-Bold.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://assets/white-circle.png" type="Texture" id=3]
 [ext_resource path="res://Character.gd" type="Script" id=4]
 [ext_resource path="res://assets/tip.png" type="Texture" id=5]
-[ext_resource path="res://AngleIndicator.gd" type="Script" id=6]
-[ext_resource path="res://mouse/Mouse.tscn" type="PackedScene" id=7]
+[ext_resource path="res://mouse/Mouse.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.167742, 0.567742 )
@@ -131,12 +130,12 @@ __meta__ = {
 }
 
 [node name="GUIControls" type="CanvasLayer" parent="."]
+editor/display_folded = true
 script = ExtResource( 1 )
 characterPath = NodePath("../Character")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUIControls"]
 editor/display_folded = true
-visible = false
 margin_left = 120.0
 margin_top = 110.0
 margin_right = 255.0
@@ -161,7 +160,6 @@ custom_fonts/font = SubResource( 3 )
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="GUIControls"]
 editor/display_folded = true
-visible = false
 margin_left = 120.0
 margin_top = 150.0
 margin_right = 255.0
@@ -182,8 +180,6 @@ margin_bottom = 30.0
 custom_fonts/font = SubResource( 3 )
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="GUIControls"]
-editor/display_folded = true
-visible = false
 margin_left = 120.0
 margin_top = 185.0
 margin_right = 255.0
@@ -204,7 +200,6 @@ margin_bottom = 30.0
 custom_fonts/font = SubResource( 3 )
 
 [node name="Character" type="Sprite" parent="."]
-editor/display_folded = true
 self_modulate = Color( 1, 0.752941, 0.407843, 1 )
 position = Vector2( 710, 220 )
 scale = Vector2( 0.5, 0.5 )
@@ -237,17 +232,10 @@ anims/squash = SubResource( 5 )
 anims/squash-loop = SubResource( 6 )
 anims/squash-out = SubResource( 7 )
 
-[node name="AngleIndicator" type="Node2D" parent="."]
-visible = false
-script = ExtResource( 6 )
-characterPath = NodePath("../Character")
-draw_angle = true
-
-[node name="MouseIcon" parent="." instance=ExtResource( 7 )]
+[node name="MouseIcon" parent="." instance=ExtResource( 6 )]
 position = Vector2( 160, 340 )
 scale = Vector2( 0.4, 0.4 )
 
 [connection signal="angle_changed" from="Character" to="GUIControls" method="_on_Character_angle_changed"]
-[connection signal="mouse_hover_changed" from="Character" to="GUIControls" method="_on_Character_mouse_hover_changed"]
 [connection signal="mouse_entered" from="Character/Area2D" to="Character" method="_on_Area2D_mouse_entered"]
 [connection signal="mouse_exited" from="Character/Area2D" to="Character" method="_on_Area2D_mouse_exited"]
