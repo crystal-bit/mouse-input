@@ -2,11 +2,11 @@
 
 [ext_resource path="res://GUIControls.gd" type="Script" id=1]
 [ext_resource path="res://assets/font/Chakra_Petch/ChakraPetch-Bold.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://assets/white-circle.png" type="Texture" id=3]
-[ext_resource path="res://Character.gd" type="Script" id=4]
+[ext_resource path="res://Character.gd" type="Script" id=3]
+[ext_resource path="res://assets/white-circle.png" type="Texture" id=4]
 [ext_resource path="res://assets/tip.png" type="Texture" id=5]
-[ext_resource path="res://AngleIndicator.gd" type="Script" id=6]
-[ext_resource path="res://mouse/Mouse.tscn" type="PackedScene" id=7]
+[ext_resource path="res://mouse/Mouse.tscn" type="PackedScene" id=6]
+[ext_resource path="res://AngleIndicator.gd" type="Script" id=7]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.167742, 0.567742 )
@@ -24,7 +24,7 @@ radius = 140.0
 [sub_resource type="Animation" id=5]
 length = 0.3
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:scale")
+tracks/0/path = NodePath("Sprite:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -33,10 +33,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.3 ),
 "transitions": PoolRealArray( 1, 1.41421, 1 ),
 "update": 0,
-"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.6, 0.6 ), Vector2( 0.55, 0.55 ) ]
+"values": [ Vector2( 1, 1 ), Vector2( 1.1, 1.1 ), Vector2( 1.05, 1.05 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:self_modulate")
+tracks/1/path = NodePath("Sprite:self_modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -53,7 +53,7 @@ resource_name = "squash-loop"
 length = 0.8
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:scale")
+tracks/0/path = NodePath("Sprite:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -62,10 +62,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.4, 0.8 ),
 "transitions": PoolRealArray( 1, 1.41421, 1.41421 ),
 "update": 0,
-"values": [ Vector2( 0.55, 0.55 ), Vector2( 0.57, 0.57 ), Vector2( 0.55, 0.55 ) ]
+"values": [ Vector2( 1.05, 1.05 ), Vector2( 1.1, 1.1 ), Vector2( 1.05, 1.05 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:self_modulate")
+tracks/1/path = NodePath("Sprite:self_modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -80,7 +80,7 @@ tracks/1/keys = {
 [sub_resource type="Animation" id=7]
 length = 0.3
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:scale")
+tracks/0/path = NodePath("Sprite:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -89,10 +89,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.3 ),
 "transitions": PoolRealArray( 1, 1.41421, 1 ),
 "update": 0,
-"values": [ Vector2( 0.55, 0.55 ), Vector2( 0.6, 0.6 ), Vector2( 0.5, 0.5 ) ]
+"values": [ Vector2( 1.05, 1.05 ), Vector2( 1.1, 1.1 ), Vector2( 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:self_modulate")
+tracks/1/path = NodePath("Sprite:self_modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -136,6 +136,7 @@ script = ExtResource( 1 )
 characterPath = NodePath("../Character")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUIControls"]
+editor/display_folded = true
 margin_left = 120.0
 margin_top = 110.0
 margin_right = 255.0
@@ -159,6 +160,7 @@ margin_bottom = 30.0
 custom_fonts/font = SubResource( 3 )
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="GUIControls"]
+editor/display_folded = true
 margin_left = 120.0
 margin_top = 150.0
 margin_right = 255.0
@@ -186,15 +188,15 @@ margin_bottom = 225.0
 
 [node name="RelativeMousePos" type="Label" parent="GUIControls/HBoxContainer3"]
 margin_top = 9.0
-margin_right = 172.0
+margin_right = 209.0
 margin_bottom = 30.0
 custom_fonts/font = SubResource( 3 )
-text = "Angle Circle-Mouse = "
+text = "Angle Mouse-Character = "
 
 [node name="Value" type="Label" parent="GUIControls/HBoxContainer3"]
-margin_left = 176.0
+margin_left = 213.0
 margin_top = 9.0
-margin_right = 176.0
+margin_right = 213.0
 margin_bottom = 30.0
 custom_fonts/font = SubResource( 3 )
 
@@ -202,15 +204,14 @@ custom_fonts/font = SubResource( 3 )
 self_modulate = Color( 1, 0.752941, 0.407843, 1 )
 position = Vector2( 710, 220 )
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 3 )
-script = ExtResource( 4 )
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="white-circle" type="Sprite" parent="Character"]
-scale = Vector2( 0.1, 0.1 )
-texture = ExtResource( 3 )
+[node name="Sprite" type="Sprite" parent="Character"]
+self_modulate = Color( 1, 0.752941, 0.407843, 1 )
+texture = ExtResource( 4 )
 
 [node name="Area2D" type="Area2D" parent="Character"]
 editor/display_folded = true
@@ -231,16 +232,15 @@ anims/squash = SubResource( 5 )
 anims/squash-loop = SubResource( 6 )
 anims/squash-out = SubResource( 7 )
 
-[node name="AngleIndicator" type="Node2D" parent="."]
-script = ExtResource( 6 )
-characterPath = NodePath("../Character")
-draw_angle = true
-
-[node name="MouseIcon" parent="." instance=ExtResource( 7 )]
+[node name="MouseInputOverlay" parent="." instance=ExtResource( 6 )]
 position = Vector2( 160, 340 )
 scale = Vector2( 0.4, 0.4 )
 
+[node name="AngleIndicator" type="Node2D" parent="."]
+script = ExtResource( 7 )
+characterPath = NodePath("../Character")
+draw_angle = true
+
 [connection signal="angle_changed" from="Character" to="GUIControls" method="_on_Character_angle_changed"]
-[connection signal="mouse_hover_changed" from="Character" to="GUIControls" method="_on_Character_mouse_hover_changed"]
 [connection signal="mouse_entered" from="Character/Area2D" to="Character" method="_on_Area2D_mouse_entered"]
 [connection signal="mouse_exited" from="Character/Area2D" to="Character" method="_on_Area2D_mouse_exited"]
